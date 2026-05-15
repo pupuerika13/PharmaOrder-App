@@ -15,11 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            MedicineSeeder::class,
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Create default admin
+        \App\Models\User::create([
+            'name' => 'Admin Pharma',
+            'phone' => '08123456789',
+            'password' => \Illuminate\Support\Facades\Hash::make('admin123'),
+            'role' => 'admin'
         ]);
     }
 }
